@@ -5,7 +5,7 @@
 # Thanks ChatGPT :)
 #
 
-PROJ_NAME="<PROJECT_NAME>" ## !!! UPDATE ME !!!
+PROJ_NAME="aws-account-bootstrap"
 
 # Set your AWS region and profile
 AWS_REGION="us-east-1"
@@ -34,3 +34,4 @@ echo "Waiting for DynamoDB table to initialize..."
 aws dynamodb wait table-exists --table-name $DYNAMODB_TABLE_NAME --region $AWS_REGION --profile $AWS_PROFILE
 
 echo "S3 bucket and DynamoDB table created successfully!"
+echo "BUCKET: ${S3_BUCKET_NAME} // DDB TABLE: ${DYNAMODB_TABLE_NAME}"
