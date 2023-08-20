@@ -1,6 +1,6 @@
-# base-aws-tf-template
+# tf-aws-account-bootstrap
 
-A base template for new Terraform plans for AWS
+Terraform plans for bootstrapping a new AWS account with the required resources.
 
 ## Supported Features
 
