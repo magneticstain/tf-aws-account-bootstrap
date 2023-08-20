@@ -15,6 +15,10 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-module "modules" {
-    source = "./modules"
+module "bootstrap-account" {
+    source = "./modules/bootstrap_account"
+    admin_username = var.admin_username
+    admin_group_name = var.admin_group_name
+    admin_policy_name_prefix = var.admin_policy_name_prefix
+    admin_policy = var.admin_policy
 }
