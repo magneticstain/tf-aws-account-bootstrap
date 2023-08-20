@@ -18,16 +18,33 @@ The plans use S3 as a backend and DynamoDB for state tracking. A script is inclu
 ./utils/generate_backend.sh
 ```
 
+Open it in your favorite text editor and update the `PROJ_NAME` variable to the name of your project.
+
+```bash
+PROJ_NAME="<PROJECT_NAME>" ## !!! UPDATE ME !!!
+```
+
+Save and then run in your shell using the command above.
+
+#### Update `backend.tfvars` File
+
+Take the names of the S3 bucket and DynamoDB table from the backend generator script and use them to update `backend.tfvars`.
+
+Example:
+
+```hcl
+bucket = "tf-bash-aws-tf-template"
+key    = "terraform.tfstate"
+region = "us-east-1"
+
+dynamodb_table = "tf-bash-aws-tf-template"
+```
+
 ### Set TF Vars
 
 Generate a `terraform.tfvars` file and fill in the variables as approriate.
 
-```hcl
-ami_id = "<EC2_AMI>"  # any AMI of your choice can be used
-key_pair_name = "<EC2_SSH_KEY_PAIR_NAME>"
-subnets = [<SUBNETS_FOR_LBS>]
-vpc = "<VPC>"
-```
+TODO: add tf vars file template for your project as needed
 
 Example:
 
