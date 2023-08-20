@@ -8,6 +8,10 @@ Terraform plans for bootstrapping a new AWS account with the required resources.
 * State locking via DynamoDB table
 * Modules ready to go, out-of-the-box
 
+### Roadmap
+
+* [ ] Add support for generating and outputting access keys
+
 ## Usage
 
 ### Bootstrap the Prerequisite Resources
@@ -44,15 +48,36 @@ dynamodb_table = "tf-bash-aws-tf-template"
 
 Generate a `terraform.tfvars` file and fill in the variables as approriate.
 
-TODO: add tf vars file template for your project as needed
+```hcl
+admin_username = "<USERNAME>"
+admin_group_name = "<GROUP_NAME>"
+admin_policy_name_prefix = "<POLICY_NAME>"
+admin_policy = <<EOF
+    <IAM_POLICY>
+EOF
+```
 
 Example:
 
 ```hcl
-ami_id = "ami-053b0d53c279acc90"  # Ubuntu Server 22.04 LTS
-key_pair_name = "default"
-subnets = ["subnet-123456789", "subnet-987654321"]
-vpc = "vpc-12345abcde"
+admin_username = "admin"
+admin_group_name = "admins"
+admin_policy_name_prefix = "admin-policy-"
+admin_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1692554267682",
+      "Action": [
+        "ec2:DescribeInstances"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
 ```
 
 ### Plan and Apply Plans
