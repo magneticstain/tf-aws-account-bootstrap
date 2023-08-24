@@ -1,4 +1,4 @@
-admin_username = "admin"
+admin_username = "jcarlson"
 admin_group_name = "admins"
 admin_policy_name_prefix = "admin-policy-"
 admin_policy = <<EOF
@@ -6,7 +6,31 @@ admin_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "Stmt1692554267682",
+      "Sid": "FullAwsOrganizations",
+      "Action": "organizations:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullCloudtrail",
+      "Action": "cloudtrail:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullDynamoDB",
+      "Action": "dynamodb:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullEC2",
+      "Action": "ec2:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "RestrictedIAM",
       "Action": [
         "iam:AddUserToGroup",
         "iam:AttachGroupPolicy",
@@ -53,6 +77,7 @@ admin_policy = <<EOF
         "iam:GetGroup",
         "iam:GetGroupPolicy",
         "iam:GetInstanceProfile",
+        "iam:GetLoginProfile",
         "iam:GetMFADevice",
         "iam:GetOrganizationsAccessReport",
         "iam:GetPolicy",
@@ -85,6 +110,7 @@ admin_policy = <<EOF
         "iam:ListRolePolicies",
         "iam:ListRoleTags",
         "iam:ListRoles",
+        "iam:ListSigningCertificates",
         "iam:ListSTSRegionalEndpointsStatus",
         "iam:ListUserPolicies",
         "iam:ListUserTags",
@@ -122,6 +148,18 @@ admin_policy = <<EOF
         "iam:UpdateRoleDescription",
         "iam:UpdateServiceSpecificCredential",
         "iam:UpdateUser"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "RestrictedS3",
+      "Action": [
+        "s3:Create*",
+        "s3:Describe*",
+        "s3:Get*",
+        "s3:List*",
+        "s3:Put*"
       ],
       "Effect": "Allow",
       "Resource": "*"

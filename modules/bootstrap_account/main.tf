@@ -1,6 +1,8 @@
 # Generate all resources required for a new AWS account
 
+#######################
 # IAM
+#######################
 ## Personal Accounts
 ### Policy
 resource "aws_iam_policy" "admin-policy" {
