@@ -6,6 +6,12 @@ admin_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "AllowAssumeRole",
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "FullAccessAnalyzer",
       "Action": "access-analyzer:*",
       "Effect": "Allow",
@@ -19,7 +25,10 @@ admin_policy = <<EOF
     },
     {
       "Sid": "FullDynamoDB",
-      "Action": "dynamodb:*",
+      "Action": [
+        "application-autoscaling:DeregisterScalableTarget",
+        "dynamodb:*"
+      ],
       "Effect": "Allow",
       "Resource": "*"
     },
