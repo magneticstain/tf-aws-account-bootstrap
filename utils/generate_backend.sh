@@ -5,7 +5,7 @@
 # Thanks ChatGPT :)
 #
 
-PROJ_NAME="aws-account-bootstrap"
+PROJ_NAME="aws-account-bootstrap-parent"
 
 # Set your AWS region and profile
 AWS_REGION="us-east-1"
