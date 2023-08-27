@@ -6,8 +6,8 @@ admin_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "FullAwsOrganizations",
-      "Action": "organizations:*",
+      "Sid": "FullAccessAnalyzer",
+      "Action": "access-analyzer:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -149,6 +149,12 @@ admin_policy = <<EOF
         "iam:UpdateServiceSpecificCredential",
         "iam:UpdateUser"
       ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullAwsOrganizations",
+      "Action": "organizations:*",
       "Effect": "Allow",
       "Resource": "*"
     },
