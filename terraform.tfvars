@@ -26,7 +26,7 @@ admin_policy = <<EOF
     {
       "Sid": "FullDynamoDB",
       "Action": [
-        "application-autoscaling:DeregisterScalableTarget",  # required it seems, based on a console error telling me so :)
+        "application-autoscaling:DeregisterScalableTarget",
         "dynamodb:*"
       ],
       "Effect": "Allow",
