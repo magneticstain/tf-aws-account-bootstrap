@@ -37,11 +37,11 @@ Take the names of the S3 bucket and DynamoDB table from the backend generator sc
 Example:
 
 ```hcl
-bucket = "tf-bash-aws-tf-template"
+bucket = "tf-base-aws-tf-template"
 key    = "terraform.tfstate"
 region = "us-east-1"
 
-dynamodb_table = "tf-bash-aws-tf-template"
+dynamodb_table = "tf-base-aws-tf-template"
 ```
 
 ### Set TF Vars
