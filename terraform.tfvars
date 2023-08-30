@@ -39,6 +39,12 @@ admin_policy = <<EOF
       "Resource": "*"
     },
     {
+      "Sid": "FullELB",
+      "Action": "elasticloadbalancing:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "RestrictedIAM",
       "Action": [
         "iam:AddUserToGroup",
