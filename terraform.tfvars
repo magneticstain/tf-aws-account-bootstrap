@@ -18,8 +18,20 @@ admin_policy = <<EOF
       "Resource": "*"
     },
     {
+      "Sid": "FullCloudFront",
+      "Action": "cloudfront:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "FullCloudtrail",
       "Action": "cloudtrail:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullCostExplorer",
+      "Action": "ce:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -170,6 +182,15 @@ admin_policy = <<EOF
     {
       "Sid": "FullAwsOrganizations",
       "Action": "organizations:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullRoute53",
+      "Action": [
+        "route53:*",
+        "route53resolver:*"
+      ],
       "Effect": "Allow",
       "Resource": "*"
     },
