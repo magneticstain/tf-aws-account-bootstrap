@@ -18,6 +18,12 @@ admin_policy = <<EOF
       "Resource": "*"
     },
     {
+      "Sid": "FullBudgets",
+      "Action": "budgets:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "FullCloudFront",
       "Action": "cloudfront:*",
       "Effect": "Allow",
@@ -26,6 +32,12 @@ admin_policy = <<EOF
     {
       "Sid": "FullCloudtrail",
       "Action": "cloudtrail:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullConfig",
+      "Action": "config:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -195,10 +207,17 @@ admin_policy = <<EOF
       "Resource": "*"
     },
     {
+      "Sid": "FullSecurityHub",
+      "Action": "securityhub:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "RestrictedS3",
       "Action": [
         "s3:Create*",
         "s3:Describe*",
+        "s3:Delete*",
         "s3:Get*",
         "s3:List*",
         "s3:Put*"
