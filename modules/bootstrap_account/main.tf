@@ -12,11 +12,13 @@ resource "aws_iam_policy" "admin-role-policy" {
   policy = var.admin_role_policy
 }
 
-### Trust Policy
-
-
 ### Role
 resource "aws_iam_role" "admin-role" {
   name = var.admin_role_name
   assume_role_policy = var.admin_role_trust_policy
+}
+
+resource "aws_iam_role_policy_attachment" "admin-role-policy-attach" {
+  role       = aws_iam_role.admin-role.name
+  policy_arn = aws_iam_policy.admin-role-policy.arn
 }
