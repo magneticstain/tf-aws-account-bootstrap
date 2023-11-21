@@ -4,12 +4,17 @@ admin_role_trust_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "XaccountAccessPrimaryUser",
       "Action": "sts:AssumeRole",
+      "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::509915386432:user/jcarlson"
       },
-      "Effect": "Allow",
-      "Sid": "XaccountAccessPrimaryUser"
+      "Condition": {
+        "Bool": {
+          "aws:multifactorAuthPresent": true
+        }
+      }
     }
   ]
 }
