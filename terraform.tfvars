@@ -1,7 +1,21 @@
-admin_username = "jcarlson"
-admin_group_name = "admins"
-admin_policy_name_prefix = "admin-policy-"
-admin_policy = <<EOF
+admin_role_name = "admin"
+admin_role_trust_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "AWS": "arn:aws:iam::509915386432:user/jcarlson"
+      },
+      "Effect": "Allow",
+      "Sid": "XaccountAccessPrimaryUser"
+    }
+  ]
+}
+EOF
+admin_role_policy_name_prefix = "admin-role-policy-"
+admin_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

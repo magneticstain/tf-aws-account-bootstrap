@@ -5,11 +5,10 @@
 # Thanks ChatGPT :)
 #
 
-PROJ_NAME="aws-account-bootstrap-parent"
+PROJ_NAME="aws-account-bootstrap-secondary"
 
 # Set your AWS region and profile
 AWS_REGION="us-east-1"
-AWS_PROFILE="default"  ## update this if needed
 
 # Set the bucket and table names
 S3_BUCKET_NAME="tf-${PROJ_NAME}"
