@@ -111,6 +111,7 @@ admin_role_policy = <<EOF
         "iam:DeleteGroup",
         "iam:DeleteGroupPolicy",
         "iam:DeleteInstanceProfile",
+        "iam:DeleteLoginProfile",
         "iam:DeletePolicy",
         "iam:DeletePolicyVersion",
         "iam:DeleteRole",
