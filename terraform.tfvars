@@ -8,11 +8,11 @@ admin_role_trust_policy = <<EOF
       "Action": "sts:AssumeRole",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::509915386432:user/jcarlson"
+        "AWS": "arn:aws:iam::509915386432:user/josh"
       },
       "Condition": {
         "Bool": {
-          "aws:multifactorAuthPresent": true
+          "aws:multifactorAuthPresent": "true"
         }
       }
     }
