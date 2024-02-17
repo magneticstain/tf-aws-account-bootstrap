@@ -1,8 +1,26 @@
-admin_username = "josh"
-admin_group_name = "admins"
-admin_policy_name_prefix = "admin-policy-"
-admin_policy = <<EOF
-
+admin_role_name = "admin"
+admin_role_trust_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "XaccountAccessPrimaryUser",
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::509915386432:user/josh"
+      },
+      "Condition": {
+        "Bool": {
+          "aws:multifactorAuthPresent": "true"
+        }
+      }
+    }
+  ]
+}
+EOF
+admin_role_policy_name_prefix = "admin-role-policy-"
+admin_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -15,12 +33,6 @@ admin_policy = <<EOF
     {
       "Sid": "FullAccessAnalyzer",
       "Action": "access-analyzer:*",
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "FullAutoScaling",
-      "Action": "autoscaling:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -39,12 +51,6 @@ admin_policy = <<EOF
     {
       "Sid": "FullCloudtrail",
       "Action": "cloudtrail:*",
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "FullCloudwatch",
-      "Action": "cloudwatch:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -78,12 +84,6 @@ admin_policy = <<EOF
     {
       "Sid": "FullELB",
       "Action": "elasticloadbalancing:*",
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "FullFreeTier",
-      "Action": "freetier:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -224,14 +224,6 @@ admin_policy = <<EOF
       "Action": [
         "route53:*",
         "route53resolver:*"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "RestrictedServiceCatalog",
-      "Action": [
-        "servicecatalog:ListApplications"
       ],
       "Effect": "Allow",
       "Resource": "*"
