@@ -18,6 +18,12 @@ admin_policy = <<EOF
       "Resource": "*"
     },
     {
+      "Sid": "FullAutoScaling",
+      "Action": "autoscaling:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
       "Sid": "FullBudgets",
       "Action": "budgets:*",
       "Effect": "Allow",
@@ -32,6 +38,12 @@ admin_policy = <<EOF
     {
       "Sid": "FullCloudtrail",
       "Action": "cloudtrail:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullCloudwatch",
+      "Action": "cloudwatch:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -65,6 +77,12 @@ admin_policy = <<EOF
     {
       "Sid": "FullELB",
       "Action": "elasticloadbalancing:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FullFreeTier",
+      "Action": "freetier:*",
       "Effect": "Allow",
       "Resource": "*"
     },
@@ -205,6 +223,14 @@ admin_policy = <<EOF
       "Action": [
         "route53:*",
         "route53resolver:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "RestrictedServiceCatalog",
+      "Action": [
+        "servicecatalog:ListApplications"
       ],
       "Effect": "Allow",
       "Resource": "*"
