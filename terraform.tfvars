@@ -8,7 +8,10 @@ admin_role_trust_policy = <<EOF
       "Action": "sts:AssumeRole",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::509915386432:user/josh"
+        "AWS": [
+          "arn:aws:iam::509915386432:user/josh",
+          "arn:aws:iam::509915386432:role/mfa-admin-jump"
+        ]
       },
       "Condition": {
         "Bool": {
