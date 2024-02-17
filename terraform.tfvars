@@ -2,7 +2,6 @@ admin_username = "josh"
 admin_group_name = "admins"
 admin_policy_name_prefix = "admin-policy-"
 admin_policy = <<EOF
-
 {
   "Version": "2012-10-17",
   "Statement": [

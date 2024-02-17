@@ -17,8 +17,8 @@ provider "aws" {
 
 module "bootstrap-account" {
     source = "./modules/bootstrap_account"
-    admin_role_name = var.admin_role_name
-    admin_role_trust_policy = var.admin_role_trust_policy
-    admin_role_policy_name_prefix = var.admin_role_policy_name_prefix
-    admin_role_policy = var.admin_role_policy
+    admin_username = var.admin_username
+    admin_group_name = var.admin_group_name
+    admin_policy_name_prefix = var.admin_policy_name_prefix
+    admin_policy = var.admin_policy
 }
