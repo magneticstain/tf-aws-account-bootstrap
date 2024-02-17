@@ -3,32 +3,22 @@
 #######################
 # IAM
 #######################
-## Personal Accounts
+## Admin Role
 ### Policy
-resource "aws_iam_policy" "admin-policy" {
-  name_prefix = var.admin_policy_name_prefix
+resource "aws_iam_policy" "admin-role-policy" {
+  name_prefix = var.admin_role_policy_name_prefix
 
   description = "IAM policy used for soft admins within the account."
-  policy = var.admin_policy
+  policy = var.admin_role_policy
 }
 
-### Group
-resource "aws_iam_group" "admin-group" {
-  name = var.admin_group_name
+### Role
+resource "aws_iam_role" "admin-role" {
+  name = var.admin_role_name
+  assume_role_policy = var.admin_role_trust_policy
 }
 
-resource "aws_iam_group_policy_attachment" "admin-policy-attachment" {
-  group      = aws_iam_group.admin-group.name
-  policy_arn = aws_iam_policy.admin-policy.arn
-}
-
-### User
-resource "aws_iam_user" "admin-user" {
-  name = var.admin_username
-}
-
-resource "aws_iam_group_membership" "admin-user-grp-membership" {
-  name  = "${aws_iam_user.admin-user.name}-${aws_iam_group.admin-group.name}-group-membership"
-  group = aws_iam_group.admin-group.name
-  users = [aws_iam_user.admin-user.name]
+resource "aws_iam_role_policy_attachment" "admin-role-policy-attach" {
+  role       = aws_iam_role.admin-role.name
+  policy_arn = aws_iam_policy.admin-role-policy.arn
 }

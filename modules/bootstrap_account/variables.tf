@@ -1,19 +1,19 @@
-variable "admin_username" {
+variable "admin_role_name" {
     type = string
-    description = "Username for initial admin account"
+    description = "Name for ARN role used for admin"
 }
 
-variable "admin_group_name" {
+variable "admin_role_trust_policy" {
     type = string
-    description = "Name for user group containing admin accounts"
+    description = "Trust policy to allow xaccount access to admin role"
 }
 
-variable "admin_policy_name_prefix" {
+variable "admin_role_policy_name_prefix" {
     type = string
-    description = "Prefix used for the ame of IAM policy being applied to the admin group, e.g. admin-policy-"
+    description = "Prefix used for the ame of IAM policy being applied to the admin role"
 }
 
-variable "admin_policy" {
+variable "admin_role_policy" {
     type = string
-    description = "IAM policy manifest for admin policy"
+    description = "IAM policy manifest for admin role policy"
 }
