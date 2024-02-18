@@ -9,11 +9,6 @@ admin_role_trust_policy = <<EOF
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::509915386432:user/josh"
-      },
-      "Condition": {
-        "Bool": {
-          "aws:multifactorAuthPresent": "true"
-        }
       }
     }
   ]
