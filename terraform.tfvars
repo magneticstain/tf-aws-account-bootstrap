@@ -4,14 +4,11 @@ admin_role_trust_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "XaccountAccessAdminMFA",
+      "Sid": "XaccountAccessPrimaryUser",
       "Action": "sts:AssumeRole",
       "Effect": "Allow",
       "Principal": {
-        "AWS": [
-          "arn:aws:iam::509915386432:root",
-          "arn:aws:iam::509915386432:role/mfa-admin-jump"
-        ]
+        "AWS": "arn:aws:iam::509915386432:user/josh"
       },
       "Condition": {
         "Bool": {
