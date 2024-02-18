@@ -4,7 +4,7 @@ admin_role_trust_policy = <<EOF
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "XaccountAccessPrimaryUser",
+      "Sid": "XaccountAccessAdminMFA",
       "Action": "sts:AssumeRole",
       "Effect": "Allow",
       "Principal": {
