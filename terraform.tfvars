@@ -9,7 +9,7 @@ admin_role_trust_policy = <<EOF
       "Effect": "Allow",
       "Principal": {
         "AWS": [
-          "arn:aws:iam::509915386432:user/josh",
+          "arn:aws:iam::509915386432:root",
           "arn:aws:iam::509915386432:role/mfa-admin-jump"
         ]
       },
