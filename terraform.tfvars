@@ -9,6 +9,26 @@ admin_role_trust_policy = <<EOF
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::509915386432:user/josh"
+      },
+      "Condition": {
+          "Bool": {
+              "aws:multifactorAuthPresent": "true"
+          }
+      }
+    }
+  ]
+}
+EOF
+cli_admin_role_trust_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "XaccountAccessMFACliAdminJump",
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::509915386432:role/mfa-admin-jump"
       }
     }
   ]
@@ -60,7 +80,7 @@ admin_role_policy = <<EOF
       "Action": "cloudwatch:*",
       "Effect": "Allow",
       "Resource": "*"
-    },
+    },jcarlsonpurcell-personal-mfa-jump
     {
       "Sid": "FullConfig",
       "Action": "config:*",
