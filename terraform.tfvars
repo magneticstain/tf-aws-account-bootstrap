@@ -11,9 +11,9 @@ admin_role_trust_policy = <<EOF
         "AWS": "arn:aws:iam::509915386432:user/josh"
       },
       "Condition": {
-          "Bool": {
-              "aws:multifactorAuthPresent": "true"
-          }
+        "Bool": {
+            "aws:multifactorAuthPresent": "true"
+        }
       }
     }
   ]
@@ -80,7 +80,7 @@ admin_role_policy = <<EOF
       "Action": "cloudwatch:*",
       "Effect": "Allow",
       "Resource": "*"
-    },jcarlsonpurcell-personal-mfa-jump
+    },
     {
       "Sid": "FullConfig",
       "Action": "config:*",
