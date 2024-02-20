@@ -12,7 +12,7 @@ admin_role_trust_policy = <<EOF
       },
       "Condition": {
         "Bool": {
-            "aws:multifactorAuthPresent": "true"
+          "aws:multifactorAuthPresent": "true"
         }
       }
     }
