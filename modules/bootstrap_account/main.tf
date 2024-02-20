@@ -48,10 +48,43 @@ resource "aws_iam_policy" "mfa-admin-role-policy" {
       "Action": "sts:AssumeRole",
       "Effect": "Allow",
       "Resource": "*"
+    },
+    {
+      "Sid": "AllowTerraformBackendAccess",
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteItem",
+        "dynamodb:Describe*",
+        "dynamodb:DeleteTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetResourcePolicy",
+        "dynamodb:List*",
+        "dynamodb:PutItem",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:UpdateItem",
+        "dynamodb:UpdateTable",
+        "s3:GetAccelerateConfiguration",
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
+        "s3:DeleteBucketPolicy",
+        "s3:DeleteObject",
+        "s3:GetBucket*",
+        "s3:Get*",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutBucketAcl",
+        "s3:PutBucketPolicy",
+        "s3:PutObject",
+        "s3:TagResource",
+        "s3:UntagResource"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
   ]
 }
-  EOF
+EOF
 }
 
 ### Role
