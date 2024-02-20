@@ -64,7 +64,6 @@ resource "aws_iam_policy" "mfa-admin-role-policy" {
         "dynamodb:UntagResource",
         "dynamodb:UpdateItem",
         "dynamodb:UpdateTable",
-        "GetAccelerateConfiguration",
         "s3:CreateBucket",
         "s3:DeleteBucket",
         "s3:DeleteObject",
