@@ -12,6 +12,13 @@ variable "admin_role_trust_policy" {
     nullable = false
 }
 
+variable "cli_admin_role_trust_policy" {
+    type = string
+    description = "Trust policy to allow xaccount access to cli admin role"
+    default = ""
+    nullable = false
+}
+
 variable "admin_role_policy_name_prefix" {
     type = string
     description = "Prefix used for the ame of IAM policy being applied to the admin role"

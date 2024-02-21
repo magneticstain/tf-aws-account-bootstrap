@@ -14,6 +14,21 @@ admin_role_trust_policy = <<EOF
   ]
 }
 EOF
+cli_admin_role_trust_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "XaccountAccessMFACliAdminJump",
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::509915386432:role/mfa-admin-jump"
+      }
+    }
+  ]
+}
+EOF
 admin_role_policy_name_prefix = "admin-role-policy-"
 admin_role_policy = <<EOF
 {
