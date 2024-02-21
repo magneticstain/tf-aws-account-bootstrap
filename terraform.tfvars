@@ -257,3 +257,75 @@ admin_policy = <<EOF
   ]
 }
 EOF
+
+
+mfa_admin_jump_role_name = "mfa-admin-jump"
+mfa_admin_jump_assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::509915386432:user/josh"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "Bool": {
+          "aws:multifactorAuthPresent": "true"
+        }
+      }
+    }
+  ]
+}
+EOF
+mfa_admin_jump_policy_name_prefix = "mfa-admin-role-policy-"
+mfa_admin_jump_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAssumeRole",
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowTerraformBackendAccess",
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteItem",
+        "dynamodb:Describe*",
+        "dynamodb:DeleteTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetResourcePolicy",
+        "dynamodb:List*",
+        "dynamodb:PutItem",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:UpdateItem",
+        "dynamodb:UpdateTable",
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
+        "s3:DeleteObject*",
+        "s3:GetAccelerateConfiguration",
+        "s3:GetBucket*",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetObject",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetReplicationConfiguration",
+        "s3:ListBucket*",
+        "s3:ListObject*",
+        "s3:PutBucketAcl",
+        "s3:PutBucketPolicy",
+        "s3:PutBucketTagging",
+        "s3:PutObject",
+        "s3:TagResource",
+        "s3:UntagResource"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
