@@ -8,81 +8,76 @@ Terraform plans for bootstrapping a new AWS account with the required resources.
 * State locking via DynamoDB table
 * Modules ready to go, out-of-the-box
 
-### Roadmap
-
-* [ ] Add support for generating and outputting access keys
-
 ## Usage
 
 ### Bootstrap the Prerequisite Resources
 
-The plans use S3 as a backend and DynamoDB for state tracking. A script is included to easily generate the resources needed to support this.
+The plans use S3 as a backend and DynamoDB for state tracking. A standalone Terraform plan is included to generate the prerequisite infrastructure to support this:
 
 ```bash
-./utils/generate_backend.sh
+cd ./utils/generate_backend/
+terraform init && terraform apply
 ```
 
-Open it in your favorite text editor and update the `PROJ_NAME` variable to the name of your project.
+After Terraform completes its run, it should include the S3 bucket name and DynamoDB table name in the output; keep this handy as we will need it for the next step.
+
+Example:
 
 ```bash
-PROJ_NAME="<PROJECT_NAME>" ## !!! UPDATE ME !!!
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+tf-ip2cr-metadata = [
+  "tf-ip2cr-20240215195635031500000001",
+  "tf-ip2cr",
+]
 ```
 
-Save and then run in your shell using the command above.
+#### Generate Backend Vars
 
-#### Update `backend.tfvars` File
+Generate a `backend.tfvars` file in the project root and fill in the variables as appropriate.
 
-Take the names of the S3 bucket and DynamoDB table from the backend generator script and use them to update `backend.tfvars`.
+```hcl
+bucket = "<TF_S3_BUCKET_NAME>"
+key    = "terraform.tfstate"
+
+dynamodb_table = "<TF_DYNAMODB_TABLE_NAME>"
+region = "<DEPLOY_REGION>"
+
+```
 
 Example:
 
 ```hcl
-bucket = "tf-base-aws-tf-template"
+bucket = "tf-ip2cr-20240215195635031500000001"
 key    = "terraform.tfstate"
+
+dynamodb_table = "tf-ip2cr"
 region = "us-east-1"
 
-dynamodb_table = "tf-base-aws-tf-template"
 ```
 
-### Set TF Vars
+### Generate TF Vars
 
-Generate a `terraform.tfvars` file and fill in the variables as approriate.
-
-```hcl
-admin_username = "<USERNAME>"
-admin_group_name = "<GROUP_NAME>"
-admin_policy_name_prefix = "<POLICY_NAME>"
-admin_policy = <<EOF
-    <IAM_POLICY>
-EOF
-```
+Generate a `terraform.tfvars` file and fill in the variables as approriate. The only variable required for this template is the `accounts` string map. This is used to support multi-account architectures.
 
 Example:
 
 ```hcl
-admin_username = "admin"
-admin_group_name = "admins"
-admin_policy_name_prefix = "admin-policy-"
-admin_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1692554267682",
-      "Action": [
-        "ec2:DescribeInstances"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
-  ]
+var_1 = "a"
+accounts = {
+  "jcarlsonpurcell-personal"            = "arn:aws:iam::509915386432:role/admin-cli",
+  "jcarlsonpurcell-personal-testing"    = "arn:aws:iam::138277128026:role/admin-cli",
+  "jcarlsonpurcell-personal-testing-2"  = "arn:aws:iam::685680125206:role/admin-cli"
 }
-EOF
 ```
 
 ### Plan and Apply Plans
 
-A Make file has been included to make running these plans easier. There is no need to initialize the environment, or any other prerequesite work, prior to running these commands.
+A Make file has been included to make running these plans easier.
+
+There is no need to initialize the environment, or any other prerequesite work, prior to running these commands.
 
 #### Plan
 

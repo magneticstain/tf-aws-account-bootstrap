@@ -1,3 +1,9 @@
+variable "accounts" {
+    type = map(string)
+    description = "Mapping of aliases->IAM roles of accounts to rollout plans to"
+    default = {}
+}
+
 variable "admin_role_name" {
     type = string
     description = "Name for ARN role used for admin"
