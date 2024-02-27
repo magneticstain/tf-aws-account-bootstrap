@@ -77,7 +77,15 @@ accounts = {
 
 A Make file has been included to make running these plans easier.
 
-There is no need to initialize the environment, or any other prerequesite work, prior to running these commands.
+#### Prereqs
+
+Set an environment variable called `TF_TGT_ACCOUNT` within your shell to the key of the account in `accounts` that you would like to deploy the plan to.
+
+Example:
+
+```bash
+export TF_TGT_ACCOUNT="jcarlsonpurcell-personal"
+```
 
 #### Plan
 
